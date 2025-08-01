@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      canvas {
+        display: block;
+      }
+      .layout {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 20%;
+        height: 100svh;
+        background-color: #071424ab;
+        padding: 3% 3%;
+      }
+      .building-card {
+        width: 400px;
+        min-height: 300px;
+        height: auto;
+        padding: 5px 10px;
+        background-color: white;
+        border: 1px solid gray;
+      }
+      .nav-menu {
+        width: 100%;
+        height: auto;
+        color: #ffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .nav-menu div {
+        /* background-color: #435dc7; */
+        padding: 10px 20px;
+        border-radius: 25px;
+        width: fit-content;
+        font-size: 24px;
+      }
+      .nav-menu div:hover {
+        cursor: pointer;
+      }
+      .campus-content {
+        width: 80%;
+        height: 70%;
+        background-color: #5469d14f;
+        margin-top: 20px;
+        padding: 5px 40px;
+        color: #fff;
+      }
+      .create-building {
+        width: 100%;
+        padding: 15px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 18px;
+        border: 1px solid white;
+      }
+      .create-building:hover {
+        cursor: pointer;
+      }
+      .create-content {
+        width: 100%;
+        height: 70%;
+        margin-top: 20px;
+        padding: 5px 20px;
+        color: #fff;
+      }
+      .step-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      .steps-progress {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        gap: 100px;
+      }
+      .step-ball {
+        width: 50px;
+        height: 50px;
+        background-color: #435dc7;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .step-ball p {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .group-ball {
+        z-index: 100;
+        opacity: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .group-ball > p {
+        font-size: 10px;
+        margin: 5px 0 0 0;
+        font-weight: bold;
+      }
+      .steps-line {
+        width: 88%;
+        top: 35%;
+        left: 7%;
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.486);
+        position: absolute;
+      }
+      .create-building-zone {
+        width: 100%;
+        height: 60%;
+        background-color: #435dc756;
+        padding: 15px;
+      }
+      .create-building-title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .implement-buidling-zone {
+        width: 100%;
+        height: auto;
+        padding: 20px 0px 5px 65px;
+      }
+      .building-input {
+        display: flex;
+        gap: 10px;
+      }
+      .building-input label {
+        font-size: 18px;
+        font-weight: bold;
+        min-width: 50px;
+      }
+      .building-input input {
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        text-indent: 10px;
+        color: white;
+        background-color: #435dc756;
+        font-size: 16px;
+        padding: 4px 0;
+      }
+      .building-input input:focus {
+        border: none;
+        outline: none;
+      }
+      .building-input-floor input {
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        text-indent: 10px;
+        color: white;
+        background-color: #435dc756;
+        font-size: 16px;
+        width: fit-content;
+      }
+      .building-input-floor input:focus {
+        border: none;
+        outline: none;
+      }
+      .input-select {
+        color: white;
+        border: none;
+        background-color: #435dc756;
+        font-size: 16px;
+        padding: 4px 10px;
+        border-radius: 15px;
+        text-align: center;
+      }
+      .opt {
+        background-color: #435dc756;
+      }
+      .input-select:focus {
+        outline: none;
+        border: none;
+      }
+      .position {
+        width: 130px;
+        height: 130px;
+        border: 1px solid rgba(255, 255, 255, 0.514);
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        border-collapse: collapse;
+      }
+      .clear-btn {
+        font-weight: bold;
+        outline: none;
+        border: none;
+        border-radius: 25px;
+        padding: 8px 25px;
+        background-color: #e92c2c;
+        color: white;
+      }
+      .clear-btn:hover {
+        cursor: pointer;
+        background-color: #e92c2c;
+      }
+      .save-btn {
+        font-weight: bold;
+        outline: none;
+        border: none;
+        border-radius: 25px;
+        padding: 8px 25px;
+        background-color: #435dc7;
+        color: white;
+      }
+      .save-btn:hover {
+        cursor: pointer;
+        background-color: #596fc9;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="layout">
+      <div class="building-card">
+        <h2>All building</h2>
+        <div></div>
+      </div>
+      <div class="building-card">
+        <h2>Create building</h2>
+        <div style="display: flex">
+          <h3>Height</h3>
+          <button onclick="setFloor(-1)">-</button>
+          <h1 id="floor">1</h1>
+          <button onclick="setFloor(1)">+</button>
+        </div>
+        <div style="display: flex">
+          <h3>Width</h3>
+          <button onclick="setWidth(-1)">-</button>
+          <h1 id="width">1</h1>
+          <button onclick="setWidth(1)">+</button>
+        </div>
+        <div style="display: flex">
+          <h3>depth</h3>
+          <button onclick="setDepth(-1)">-</button>
+          <h1 id="depth">1</h1>
+          <button onclick="setDepth(1)">+</button>
+        </div>
+      </div>
+      <div class="building-card">
+        <h2>Create floor</h2>
+        <div></div>
+      </div>
+    </div> -->
+    <div class="layout">
+      <div class="nav-menu">
+        <div id="Campus" onclick="stopCreateBuilding()">Campus</div>
+        <div id="Create" onclick="startCreateBuilding()">Create</div>
+      </div>
+      <div id="campus-content" class="campus-content">
+        <h2>All Building</h2>
+        <div onclick="startCreateBuilding()" class="create-building">
+          Create Building
+        </div>
+      </div>
+      <div id="create-content" class="create-content">
+        <div class="step-title">Step to create</div>
+        <div class="steps-progress">
+          <div class="steps-line"></div>
+          <div class="group-ball">
+            <div class="step-ball">
+              <p>1</p>
+            </div>
+            <p>Create Building</p>
+          </div>
+          <div class="group-ball">
+            <div class="step-ball">
+              <p>2</p>
+            </div>
+            <p>Create Floor</p>
+          </div>
+          <div class="group-ball">
+            <div class="step-ball">
+              <p>3</p>
+            </div>
+            <p>Create Units</p>
+          </div>
+        </div>
+        <div class="create-building-zone">
+          <div class="create-building-title">
+            <div class="step-ball">
+              <p>1</p>
+            </div>
+            <h2>Create building</h2>
+          </div>
+          <div class="implement-buidling-zone">
+            <div class="building-input">
+              <label>Name</label>
+              <input id="username-input" type="text" />
+            </div>
+          </div>
+          <div class="implement-buidling-zone">
+            <div class="building-input">
+              <label>Type</label>
+              <select id="input-select" class="input-select">
+                <option value="Square">Square</option>
+                <option valid="Rectangular">Rectangular</option>
+              </select>
+            </div>
+          </div>
+          <div class="implement-buidling-zone">
+            <div class="building-input">
+              <label>Position</label>
+              <div id="2dGrid" class="position"></div>
+            </div>
+          </div>
+          <div class="implement-buidling-zone">
+            <div class="building-input-floor">
+              <label>Total floor</label>
+              <input id="floor-input" type="number" value="1" min="1" max="8" />
+            </div>
+          </div>
+          <div
+            style="width: 100%; display: flex; justify-content: end; gap: 5px"
+          >
+            <button onclick="onClearHandler()" class="clear-btn">Clear</button>
+            <button class="save-btn">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.123.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.123.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="main.js"></script>
+    <!-- <script src="./three.js"></script> -->
+    <script src="./example.js"></script>
+  </body>
+</html>
