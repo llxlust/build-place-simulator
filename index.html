@@ -21,7 +21,7 @@
         left: 0px;
         width: 20%;
         height: 100svh;
-        background-color: #071424ab;
+        background-color: #000000ab;
         padding: 3% 3%;
       }
       .building-card {
@@ -54,7 +54,7 @@
       .campus-content {
         width: 80%;
         height: 70%;
-        background-color: #5469d14f;
+        background-color: #0000004f;
         margin-top: 20px;
         padding: 5px 40px;
         color: #fff;
@@ -95,7 +95,7 @@
       .step-ball {
         width: 50px;
         height: 50px;
-        background-color: #435dc7;
+        background-color: #000000;
         border-radius: 100%;
         display: flex;
         justify-content: center;
@@ -129,7 +129,7 @@
       .create-building-zone {
         width: 100%;
         height: 60%;
-        background-color: #435dc756;
+        background-color: #0000003e;
         padding: 15px;
       }
       .create-building-title {
@@ -158,7 +158,7 @@
         border-radius: 15px;
         text-indent: 10px;
         color: white;
-        background-color: #435dc756;
+        background-color: #00000056;
         font-size: 16px;
         padding: 4px 0;
       }
@@ -172,7 +172,7 @@
         border-radius: 15px;
         text-indent: 10px;
         color: white;
-        background-color: #435dc756;
+        background-color: #00000056;
         font-size: 16px;
         width: fit-content;
       }
@@ -183,14 +183,14 @@
       .input-select {
         color: white;
         border: none;
-        background-color: #435dc756;
+        background-color: #00000056;
         font-size: 16px;
         padding: 4px 10px;
         border-radius: 15px;
         text-align: center;
       }
       .opt {
-        background-color: #435dc756;
+        background-color: #00000056;
       }
       .input-select:focus {
         outline: none;
@@ -223,12 +223,12 @@
         border: none;
         border-radius: 25px;
         padding: 8px 25px;
-        background-color: #435dc7;
+        background-color: #000000;
         color: white;
       }
       .save-btn:hover {
         cursor: pointer;
-        background-color: #596fc9;
+        background-color: #000000;
       }
     </style>
   </head>
@@ -265,8 +265,11 @@
       </div>
     </div> -->
     <div class="layout">
+      <h1 style="font-size: 24px; text-align: center; color: white">
+        ICAT Digital Twin Engine 0.1
+      </h1>
       <div class="nav-menu">
-        <div id="Campus" onclick="stopCreateBuilding()">Campus</div>
+        <div id="Campus" onclick="stopCreateBuilding()">Building</div>
         <div id="Create" onclick="startCreateBuilding()">Create</div>
       </div>
       <div id="campus-content" class="campus-content">

@@ -11,7 +11,7 @@ const changeMenuHandler = (menu) => {
   menus.map((value) => {
     const element = document.getElementById(value.name);
     const content = document.getElementById(value.content);
-    const bg = value.name === menu ? "#435dc7" : "transparent";
+    const bg = value.name === menu ? "#000000ff" : "transparent";
     element.style.backgroundColor = bg;
     content.style.display = value.name === menu ? "block" : "none";
     console.log(content, ":content");

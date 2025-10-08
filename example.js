@@ -1,6 +1,6 @@
 // สร้าง scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x051c2c);
+scene.background = new THREE.Color("#FCF2E8");
 
 // สร้างกล้อง
 const camera = new THREE.PerspectiveCamera(
@@ -38,7 +38,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 const gridHelper = new THREE.GridHelper(25, 25);
 scene.add(gridHelper);
 
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000 });
 const lineGroup = new THREE.Group();
 
 const size = 25;
@@ -143,7 +143,7 @@ window.addEventListener("pointerup", (event) => {
   const targetY = 0;
   if (intersects.length > 0 && isCanPlace) {
     if (!isCanCreate()) {
-      alert("Bad Request");
+      alert("Please Enter building name");
       return;
     }
     const color = `${getRandomColor()}`;
@@ -246,7 +246,7 @@ const create2DGridUI = () => {
       const div = document.createElement("div");
       div.style.width = "100%";
       div.style.height = "100%";
-      div.style.border = "1px solid rgba(255, 255, 255, 0.7)";
+      div.style.border = "1px solid rgba(255, 255, 255, 1)";
       div.id = `${index}${indexIn}`;
       grids.appendChild(div);
     });
@@ -283,7 +283,7 @@ const defineLabelIndex = () => {
           cube: null,
         });
         if (y <= 0) {
-          createTextLabel(`${x},${z}`, worldX, worldZ, 0.7);
+          //createTextLabel(`${x},${z}`, worldX, worldZ, 0.7);
         }
       }
       floor.push([...row]);
